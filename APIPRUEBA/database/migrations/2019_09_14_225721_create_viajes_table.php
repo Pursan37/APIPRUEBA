@@ -14,12 +14,14 @@ class CreateViajesTable extends Migration
     public function up()
     {
         Schema::create('viajes', function (Blueprint $table) {
+            //una tabla para viajes
             $table->increments('id');
             $table->timestamp('fecha');
             $table->string('pais');
             $table->string('ciudad');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamps();
+            //se especifica la referencia a la tabla usuarios, en donde se haran registros dependiendo si existen los emails en la tabla usuario
             $table->foreign('email')
                 ->references('email')->on('usuarios')
                 ->onDelete('cascade');
